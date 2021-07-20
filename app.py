@@ -115,8 +115,7 @@ ea = ['Burundi',
       'Zimbabwe']
 
 ca = ['Angola', 'Cameroon', 'Central African Republic',
-      'Chad', 'Congo (Brazzaville)',
-      'Congo (Kinshasa)']
+      'Chad', 'Congo (Brazzaville)', 'Congo (Kinshasa)']
 
 n_wa = na + sa + ea + ca
 
@@ -171,12 +170,11 @@ region_options = df2['Regional indicator'].unique().tolist()
 year_selected = st.selectbox("Which year would you like to see?", year_options, 0)
 region_selected = st.multiselect("Which country would you like to see?", region_options, ['Western Africa'])
 
-df2 = df2[df2['Country'].isin(region_selected)]
+df2 = df2[df2['Regional indicator'].isin(region_selected)]
 df2 = df2[df2['year'] == year_selected]
 
-fig = px.scatter(df2, x="Life Ladder", y="year",
-                 color="Regional indicator", hover_name="Regional indicator",
-                 log_x=True, size_max=55, animation_frame = "year", animation_group="country")
+fig = px.scatter(df2, x="Life Ladder", y="year", color = "Regional indicator", hover_name="Country",
+                 log_x=True, size_max=55, animation_frame = "year", animation_group="Country")
 
 fig.update_layout(width=800)
 st.write(fig)
@@ -184,9 +182,9 @@ st.write(fig)
 ## Layout Data
 
 ## Animate Data Plots
-fig.layout.updatemenus[0].buttons[0].args[1]['frame']['duration'] = 30
-fig.layout.updatemenus[0].buttons[0].args[1]['transition']['duration'] = 5
+# fig.layout.updatemenus[0].buttons[0].args[1]['frame']['duration'] = 30
+# fig.layout.updatemenus[0].buttons[0].args[1]['transition']['duration'] = 5
 
-fig.update_layout(width=800)
-
-st.write(fig)
+# fig.update_layout(width=800)
+#
+# st.write(fig)
